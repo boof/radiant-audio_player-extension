@@ -1,21 +1,12 @@
-Test:
-- audio player loads if relevant AudioPlayerConfig is missing
+# TODO
 
-Get rid of:
-- config/audio_player.yml
-✓ load_configuration action during activation.
-
-Config form:
-✓ accept #000 or #000000 or 0xaabbcc formats
-✓ on the form, use #abcdef format always
-
-Take a look at MEMOIZE macros in latest rails 2.2
-
-
-
-
-         
-:leftbg       x     :rightbg          :rightbghover 
-:lefticon     x     :righticon        :righticonhover
-:bg                 :border           :text
-:track              :loader           :slider
+ * convert templates to .haml and .sass
+ * support translations
+ * drop Paperclip
+ * make proper use of AdminUI
+ * use latest jplayer, swfobject and jquery
+ * support for id3 tags
+ * use plupload
+ * support playlists
+ * maybe change naming to playlists and tracks instead of audio
+ * fix remaining deprecations

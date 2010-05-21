@@ -7,12 +7,14 @@ class Audio < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
 
-  validates_presence_of :title
-  validates_uniqueness_of :title
-
   # MIME types taken from: http://filext.com/
   validates_attachment_content_type :track,
       :content_type => /a(?:udio|pplication)\/(?:x-)?mp(?:e?g|3|eg3|egaudio)/
+
+  validates_presence_of :title
+
+  # TODO add scope when in playlist
+  validates_uniqueness_of :title
 
   # TODO replace this stub with association
   PLAYLIST = 'Playlist'
@@ -42,6 +44,8 @@ class Audio < ActiveRecord::Base
     string = read_attribute :title
 
     if string.blank? and string = read_tag(:title)
+      artist = read_tag :artist
+      string = "#{ artist } - #{ string }" if artist
       write_attribute :title, string
     end
 
@@ -53,7 +57,12 @@ class Audio < ActiveRecord::Base
   end
 
   def slug
-    title.downcase.split * '-'
+    slug = title.downcase
+    slug.gsub!(/[^a-z0-9\-]/, '-')
+    slug.gsub!(/(?:^-|-$)/, '')
+    slug.squeeze! '-'
+
+    slug
   end
 
   protected

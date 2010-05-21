@@ -14,7 +14,3 @@ module Admin::AudioHelper
   end
 
 end
-
-__END__
-player_params = ["autostart=no","loop=no"]
-player_params += ["playerID=#{audio_track.id}","soundFile=#{audio_track.track.url}"]

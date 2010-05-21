@@ -1,9 +1,9 @@
 .title img {
-  background-image: url('/images/admin/audio-player.png');
-  height: 32px;
-  width: 32px;
+	background-image: url('/images/admin/audio-player.png');
+	height: 32px;
+	width: 32px;
 }
-.title .audio-control img { background-position: 0 -32px; }
-.title .audio-control:hover img { background-position: -32px 0; }
-.title .active img { background-position: -32px -32px; }
-.title .active:hover img { background-position: -32px -32px; }
+.title .audio-control img       { background-position:   0px -32px; }
+.title .audio-control:hover img { background-position: -32px   0px; }
+.title .active img,
+.title .active:hover img        { background-position: -32px -32px; }

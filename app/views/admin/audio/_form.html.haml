@@ -3,8 +3,6 @@
     %p
       %label(for="audio_track")=t 'file', :scope => 'audio-player.playlist.track'
       = form.file_field :track
-      - if content_type_error = @audio.errors.on(:track_content_type)
-        %small.error&= "• #{ content_type_error }"
 
     %p.title
       %label(for="audio_title")=t 'track', :count => 1, :scope => 'audio-player.playlist'

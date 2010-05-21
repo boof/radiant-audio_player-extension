@@ -1,10 +1,17 @@
-%tr.track.node.level_1(id="track-#{ track.id }")
-  
-  %td.title(style="padding-left: #{padding_left(1)}px;")
-    = image 'audio_player/track'
-    = link_to h(track.title), edit_admin_audio_path(:id => track.id)
-    %audio(src="#{ track.track }")
+%tr.track.node(class="level_#{ level }" id="track-#{ track.id }")
 
-  %td &nbsp
-  %td.remove
-    = link_to t('remove'), remove_admin_audio_path(track.id)
+  %td.title(style="padding-left: #{ padding_left level }px;")
+    %audio(src="#{ track.track }")
+    = image 'audio-player/track'
+
+    - unless simple
+      = link_to h(track.title), edit_admin_audio_path(:id => track.id)
+    - else
+      &= track.title
+
+  - unless simple
+    %td &nbsp
+    %td.remove
+      = link_to t('remove'), remove_admin_audio_path(track.id)
+  - else
+    %td(colspan="2") &nbsp

@@ -1,23 +1,23 @@
 .form-area
   #audio_form_area
     %p
-      %label(for="audio_track") Audio file
+      %label(for="audio_track")=t 'file', :scope => 'audio-player.playlist.track'
       = form.file_field :track
       - if content_type_error = @audio.errors.on(:track_content_type)
         %small.error&= "• #{ content_type_error }"
 
     %p.title
-      %label(for="audio_title") Title
+      %label(for="audio_title")=t 'track', :count => 1, :scope => 'audio-player.playlist'
       = form.text_field 'title', :class => 'textbox', :maxlength => 255
 
     %p.description
-      %label(for="audio_description") Description
-      = form.text_area 'description', :class => 'textbox', :maxlength => 255
+      %label(for="audio_description")=t 'description', :scope => 'audio-player.playlist.track'
+      = form.text_area 'description'
     
     %p
-      %label(for="audio_filter") Filter:
+      %label(for="audio_filter")=t 'filter'
       %select(name="audio[filter]" id="audio_filter")
-        = options_for_select [['none', nil], *TextFilter.descendants.map { |f| f.filter_name }.sort], @audio.filter
+        = options_for_select [[t('select.none'), nil], *TextFilter.descendants.map { |f| f.filter_name }.sort], @audio.filter
 
 %p.buttons
   = save_model_button @audio

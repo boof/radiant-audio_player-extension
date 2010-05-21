@@ -1,5 +1,4 @@
-- include_stylesheet 'admin/audio_player/audio'
-- include_javascript 'audio_player/audio-player'
+- include_javascript %w[ http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js audio-player/jquery.jplayer.min audio-player/audio-player ]
 
 .outset
   %table#audio.index(cellspacing="0" border="0" cellpadding="0")
@@ -12,13 +11,13 @@
       %tr.playlist.node.level_0
 
         %td.file(style="padding-left: #{padding_left(0)}px;")
-          = image 'audio_player/playlist'
-          =t 'playlist', :scope => 'audio-player', :count => 1
+          = image 'audio-player/playlist'
+          Playlist
 
         %td.add_child= link_to t('new', :scope => 'audio-player.playlist.track'), new_admin_audio_path
         %td.remove= link_to t('remove'), not_found_path
 
-      = render :partial => 'track', :collection => @audio
+      = render_tracks @audio
       - unless @audio.any?
         %tr
           %td.note(colspan="4")=t 'no_tracks', :scope => 'audio-player.playlist'

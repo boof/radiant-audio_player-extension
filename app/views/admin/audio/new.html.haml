@@ -1,5 +1,3 @@
-- include_stylesheet 'admin/audio_player/audio'
-
 %h1= t('new', :scope => 'audio-player.playlist.track')
 
 - form_for [:admin, @audio], :url => admin_audio_index_path, :html => { :multipart => true } do |form|

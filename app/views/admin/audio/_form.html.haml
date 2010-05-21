@@ -1,0 +1,26 @@
+.form-area
+  #audio_form_area
+    %p
+      %label(for="audio_track") Audio file
+      = form.file_field :track
+      - if content_type_error = @audio.errors.on(:track_content_type)
+        %small.error&= "• #{ content_type_error }"
+
+    %p.title
+      %label(for="audio_title") Title
+      = form.text_field 'title', :class => 'textbox', :maxlength => 255
+
+    %p.description
+      %label(for="audio_description") Description
+      = form.text_area 'description', :class => 'textbox', :maxlength => 255
+    
+    %p
+      %label(for="audio_filter") Filter:
+      %select(name="audio[filter]" id="audio_filter")
+        = options_for_select [['none', nil], *TextFilter.descendants.map { |f| f.filter_name }.sort], @audio.filter
+
+%p.buttons
+  = save_model_button @audio
+  = save_model_and_continue_editing_button @audio
+  = t('or')
+  = link_to t('cancel'), admin_audio_index_path

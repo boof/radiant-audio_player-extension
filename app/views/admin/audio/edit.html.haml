@@ -1,0 +1,6 @@
+- include_stylesheet 'admin/audio_player/audio'
+
+%h1= t('edit', :title => @audio.title, :scope => 'audio-player.playlist.track')
+
+- form_for [:admin, @audio], :html => { :multipart => true } do |form|
+  = render :partial => 'form', :object => form

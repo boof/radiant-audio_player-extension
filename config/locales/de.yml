@@ -1,0 +1,12 @@
+de:
+  audio-player:
+    title: Titel
+    playlist:
+      one: Liste
+      other: Listen
+      new: Liste anlegen
+      track:
+        one: Titel
+        other: Titel
+        new: Neuer Titel
+        edit: '{{title}} bearbeiten'

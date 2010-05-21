@@ -1,0 +1,30 @@
+- include_stylesheet 'admin/audio_player/audio'
+- include_javascript 'audio_player/audio-player'
+
+.outset
+  %table#audio.index(cellspacing="0" border="0" cellpadding="0")
+    %thead
+      %tr
+        %th.file=t 'title', :scope => 'audio-player'
+        %th.audio &nbsp
+        %th.modify(colspan="2")=t 'modify'
+
+    %tbody
+      %tr.playlist.node.level_0
+
+        %td.audio(style="padding-left: #{padding_left(0)}px;")
+          = image 'audio_player/playlist'
+          =t 'playlist', :scope => 'audio-player', :count => 1
+
+        %td &nbsp;
+        %td.add_child= link_to t('new', :scope => 'audio-player.playlist.track'), new_admin_audio_path
+        %td.remove= link_to t('remove'), not_found_path
+
+      = render :partial => 'track', :collection => @audio
+      - unless @audio.any?
+        %tr
+          %td.note(colspan="4")=t 'no_tracks', :scope => 'audio-player.playlist'
+
+  #actions
+    %ul
+      %li= link_to "#{ image 'plus' } #{ t 'new', :scope => 'audio-player.playlist' }", not_found_path

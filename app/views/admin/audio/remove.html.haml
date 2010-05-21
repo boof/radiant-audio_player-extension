@@ -1,0 +1,18 @@
+%h1=t 'remove_track', :scope => 'audio'
+%p=t 'remove_warning', :scope => 'audio'
+
+.inset
+  %table.index#audio
+    %tbody
+      %tr.track.node.level_1(id="track-#{ @audio.id }")
+
+        %td.title
+          = image 'audio_player/track'
+          &= @audio.title
+
+- form_for [:admin, @audio], :html => { :method => :delete } do |form|
+
+  %p.buttons
+    %input.button{:type=>"submit", :value => t('delete_track') }/
+    = t('or')
+    = link_to t('cancel'), admin_audio_index_path

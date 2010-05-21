@@ -1,4 +1,5 @@
 class Audio < ActiveRecord::Base
+
   has_attached_file :track,
     :url => "/:class/:id/:basename.:extension",
     :path => ":rails_root/public/:class/:id/:basename.:extension"

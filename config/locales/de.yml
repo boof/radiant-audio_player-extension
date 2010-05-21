@@ -5,8 +5,13 @@ de:
       one: Liste
       other: Listen
       new: Liste anlegen
+      no_tracks: Keine Titel vorhanden
       track:
         one: Titel
         other: Titel
+        file: Datei
+        description: Beschreibung
         new: Neuer Titel
         edit: '{{title}} bearbeiten'
+        remove: '{{title}} löschen'
+        warn-remove: 'Sind Sie sicher, dass Sie den folgenden Titel endgültig löschen wollen?'

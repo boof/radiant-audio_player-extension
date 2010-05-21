@@ -6,17 +6,15 @@
     %thead
       %tr
         %th.file=t 'title', :scope => 'audio-player'
-        %th.audio &nbsp
         %th.modify(colspan="2")=t 'modify'
 
     %tbody
       %tr.playlist.node.level_0
 
-        %td.audio(style="padding-left: #{padding_left(0)}px;")
+        %td.file(style="padding-left: #{padding_left(0)}px;")
           = image 'audio_player/playlist'
           =t 'playlist', :scope => 'audio-player', :count => 1
 
-        %td &nbsp;
         %td.add_child= link_to t('new', :scope => 'audio-player.playlist.track'), new_admin_audio_path
         %td.remove= link_to t('remove'), not_found_path
 

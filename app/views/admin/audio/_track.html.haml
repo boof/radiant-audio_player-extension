@@ -3,12 +3,7 @@
   %td.title(style="padding-left: #{padding_left(1)}px;")
     = image 'audio_player/track'
     = link_to h(track.title), edit_admin_audio_path(:id => track.id)
-
-  %td.audio
-    / %audio(src="#{ track.track }" controls="controls")
-    /   %a.audio(id="player-#{ track.id }" href="#{ track.track }")
     %audio(src="#{ track.track }")
-      / let jplayer handle
 
   %td &nbsp
   %td.remove

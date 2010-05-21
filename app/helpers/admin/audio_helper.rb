@@ -8,22 +8,13 @@ module Admin::AudioHelper
         { :partial => 'track', :object => object, :locals => locals }
   end
 
+  def include_jplayer
+    include_javascript %w[ http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js audio-player/jquery.jplayer.min audio-player/audio-player ]
+    include_stylesheet 'admin/audio-player.css'
+  end
+
 end
 
 __END__
-def admin_player_params(audio_track)
-
-  if config = AudioPlayerConfig.find_by_name("Admin")
-    player_params = config.parameters_for_player
-  else
-    player_params = ["autostart=no","loop=no"]
-  end
-
-  if audio_track.class == Audio
-    player_params += ["playerID=#{audio_track.id}","soundFile=#{audio_track.track.url}"]
-  else
-    player_params += ["playerID=example","soundFile=#{audio_track}"]
-  end
-
-  player_params.join("&amp;")
-end
+player_params = ["autostart=no","loop=no"]
+player_params += ["playerID=#{audio_track.id}","soundFile=#{audio_track.track.url}"]

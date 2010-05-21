@@ -8,7 +8,7 @@ class Audio < ActiveRecord::Base
   belongs_to :updated_by, :class_name => 'User'
 
   validates_presence_of :title
-  validates_uniqueness_of :title, :message => 'name already in use'
+  validates_uniqueness_of :title
 
   # MIME types taken from: http://filext.com/
   validates_attachment_content_type :track,

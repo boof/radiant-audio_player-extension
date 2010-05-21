@@ -1,8 +1,7 @@
 %tr.track.node(class="level_#{ level }" id="track-#{ track.id }")
 
-  %td.title(style="padding-left: #{ padding_left level }px;")
-    %audio(src="#{ track.track }")
-    = image 'audio-player/track'
+  %td.title(colspan="2" style="padding-left: #{ padding_left level }px;")
+    %a.audio-control(href="#{ track.url }")= image 'blank.gif'
 
     - unless simple
       = link_to h(track.title), edit_admin_audio_path(:id => track.id)

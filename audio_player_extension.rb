@@ -23,7 +23,7 @@ module AudioPlayer
       Paperclip::Interpolations.respond_to? :playlist_url or
       Paperclip.interpolates(:playlist_url) { |a, _| a.instance.playlist.url }
       Paperclip::Interpolations.respond_to? :playlist_path or
-      Paperclip.interpolates(:playlist_path) { |a, _| a.instance.playlist.to_slug }
+      Paperclip.interpolates(:playlist_path) { |a, _| a.instance.playlist.path }
       Paperclip::Interpolations.respond_to? :track_slug or
       Paperclip.interpolates(:track_slug) { |a, _| a.instance.to_slug }
     end

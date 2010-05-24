@@ -21,7 +21,7 @@ class Playlist < ActiveRecord::Base
   validates_presence_of :title
   def to_s; read_attribute :title end
 
-  def self.slug(title)
+  def self.to_slug(title)
     slug = title.downcase
     slug.gsub!(/[^a-z0-9\-]/, '-')
     slug.gsub!(/(?:^-|-$)/, '')
@@ -29,11 +29,11 @@ class Playlist < ActiveRecord::Base
 
     slug
   end
-  def slug
-    Playlist.slug title
+  def to_slug
+    Playlist.to_slug title
   end
   def self.url(title)
-    "#{ AudioPlayer::PUBLIC_PATH }/#{ slug title }"
+    "#{ AudioPlayer::PUBLIC_PATH }/#{ to_slug title }"
   end
   def url
     Playlist.url title

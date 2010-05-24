@@ -19,7 +19,7 @@ class Track < ActiveRecord::Base
   validates_uniqueness_of :title, :scope => :playlist_id
 
   def to_param
-    "#{ id }-#{ slug }"
+    "#{ id }-#{ to_slug }"
   end
 
   def path
@@ -69,7 +69,7 @@ class Track < ActiveRecord::Base
     string
   end
 
-  def slug
+  def to_slug
     slug = title.downcase
     slug.gsub!(/[^a-z0-9\-]/, '-')
     slug.gsub!(/(?:^-|-$)/, '')

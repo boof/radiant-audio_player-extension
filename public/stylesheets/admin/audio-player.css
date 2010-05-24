@@ -7,3 +7,32 @@
 .title .audio-control:hover img { background-position: -32px   0px; }
 .title .active img,
 .title .active:hover img        { background-position: -32px -32px; }
+
+table#audio {
+	margin-top: 3em;
+	width: 100%;
+}
+table#audio .drawer_handle {
+	margin-top: inherit;
+	padding: inherit;
+}
+table#audio .drawer_handle a {
+	border-radius: 0;
+	display: block;
+}
+table#audio .drawer_contents {
+	background: transparent;
+	padding-bottom: 0;
+	margin-bottom: 2px;
+}
+table#audio .drawer_handle a.more, table#audio .drawer_handle a.less {
+	background-image: none;
+}
+table.track-details th, table.track-details td {
+	font-size: .8em;
+}
+table.track-details th {
+	width: 8em;
+	font-weight: bold;
+	text-align: right;
+}

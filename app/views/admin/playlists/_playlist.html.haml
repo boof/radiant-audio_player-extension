@@ -2,7 +2,7 @@
 
   %td.title(style="padding-left: #{padding_left(0)}px;")
     = image 'blank.gif'
-    = link_to h(playlist), edit_admin_playlist_path(playlist)
+    = link_to h(playlist), admin_playlist_path(playlist)
 
   %td
     .player(id="#player-#{ playlist.id }")

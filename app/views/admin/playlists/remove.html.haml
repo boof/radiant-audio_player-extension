@@ -1,14 +1,18 @@
-%h1=t 'remove', :title => @playlist.title, :scope => 'audio-player.playlist'
-%p=t 'warn-remove', :scope => 'audio-player.playlist'
+- include_audio_player
+- with_options :scope => 'audio-player.playlist' do |scope|
 
-.inset
-  %table.index#audio
-    %tbody
-      = render :partial => 'playlist', :object => @playlist
+  %h1=scope.t 'remove', :title => @playlist.title
 
-- form_for [:admin, @playlist], :html => { :method => :delete } do |form|
+  .inset
+    %table#audio
+      %tbody
+        = render_tracks @playlist.tracks, :level => 0, :simple => true
 
-  %p.buttons
-    %input.button{:type=>"submit", :value => t('remove') }/
-    = t('or')
-    = link_to t('cancel'), admin_playlists_path
+  %p=scope.t 'warn-remove'
+
+  - form_for [:admin, @playlist], :html => { :method => :delete } do |form|
+
+    %p.buttons
+      %input.button{:type=>"submit", :value => t('remove') }/
+      = t('or')
+      = link_to t('cancel'), admin_playlists_path

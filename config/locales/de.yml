@@ -5,14 +5,28 @@ de:
       one: Liste
       other: Listen
       new: Liste anlegen
-      edit: '{{title}} bearbeiten'
+      edit: '"{{title}}" bearbeiten'
+      remove: '"{{title}}" löschen'
+      warn-remove: 'Sind Sie sicher dass Sie die Liste und Titel endgültig löschen wollen?'
       no_tracks: Keine Titel vorhanden
       track:
         one: Titel
         other: Titel
         audio: Datei
         description: Beschreibung
+        size: 'Größe'
+        length: 'Dauer'
+        bitrate: 'Daterate'
+        samplerate: 'Abtastrate'
+        channels: 'Kanäle'
+        channel_modes:
+          JStereo: Stereo (Joint)
+          Stereo: Stereo
+          'Single Channel': 'Mono'
+          'Dual Channel': '2 Kanäle'
+        artist: 'Interpret'
+        album: 'Album'
         new: Neuer Titel
-        edit: '{{title}} bearbeiten'
-        remove: '{{title}} löschen'
-        warn-remove: 'Sind Sie sicher, dass Sie den folgenden Titel endgültig löschen wollen?'
+        edit: '"{{title}}" bearbeiten'
+        remove: '"{{title}}" löschen'
+        warn-remove: 'Sind Sie sicher dass Sie den Titel endgültig löschen wollen?'

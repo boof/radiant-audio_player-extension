@@ -1,16 +1,18 @@
 %tr.track.node(class="level_#{ level }" id="track-#{ track.id }")
 
-  %td.title(colspan="2" style="padding-left: #{ padding_left level }px;")
-    %a.audio-control(href="#{ track.url }")= image 'blank.gif'
-
-    - unless simple
-      = link_to h(track.title), edit_admin_track_path(track.id)
-    - else
-      &= track.title
-
   - unless simple
+    %td.title(colspan="2" style="padding-left: #{ padding_left level }px;")
+      %a.audio-control(href="#{ track.url }")= image 'blank.gif'
+      = link_to h(track.title), admin_track_path(track.id)
     %td &nbsp
     %td.remove
       = link_to t('remove'), remove_admin_track_path(track.id)
   - else
-    %td(colspan="2") &nbsp
+    %td.title(colspan="4" style="padding-left: #{ padding_left level }px;")
+      .drawer
+        .drawer_handle
+          %a.toggle(href="#track_#{ track.id }" rel="toggle[track_#{ track.id }]" class="#{ meta_errors?? 'less' : 'more' }")
+            = "#{ track.position + 1 }."
+            &= track.title
+        .drawer_contents(id="track_#{ track.id }")
+          = render :partial => '/admin/tracks/track_details', :object => track

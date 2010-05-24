@@ -1,5 +1,7 @@
 class Admin::TracksController < Admin::ResourceController
 
+  helper 'Admin::Audio'
+
   protected
 
     def load_model

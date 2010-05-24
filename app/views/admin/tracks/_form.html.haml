@@ -1,20 +1,33 @@
-.form-area
-  #audio_form_area
-    %p
-      %label(for="track_audio")=t 'audio', :scope => 'audio-player.playlist.track'
-      = form.file_field :audio
+- track = form.object
+- with_options :scope => 'audio-player.playlist.track' do |scope|
 
-    %p.title
-      %label(for="track_title")=t 'track', :count => 1, :scope => 'audio-player.playlist'
-      = form.text_field :title, :class => 'textbox', :maxlength => 255
+  .form-area
+    #audio_form_area
+      %p
+        %label(for="track_audio")= scope.t 'audio'
+        = form.file_field :audio
 
-    %p.description
-      %label(for="track_description")=t 'description', :scope => 'audio-player.playlist.track'
-      = form.text_area :description
-    
-    %p
-      %label(for="track_filter")=t 'filter'
-      = form.select :filter, [[t('select.none'), nil], *TextFilter.descendants.map { |f| f.filter_name }.sort]
+      %p.title
+        %label(for="track_title")=t 'track', :count => 1, :scope => 'audio-player.playlist'
+        = form.text_field :title, :class => 'textbox', :maxlength => 255
+
+      - unless form.object.new_record?
+        .drawer
+          .drawer_contents(id="track_#{ track.id }")
+            = render :partial => 'track_details', :object => track
+          .drawer_handle
+            %a.toggle(href="#track_#{ track.id }" rel="toggle[track_#{ track.id }]" class="#{ meta_errors?? 'less' : 'more' }")= meta_label
+
+      #tab_control
+        #tabs.tabs
+          %label.tab.here(for="track_description")= scope.t 'description'
+        #pages.pages
+          .page
+            %p
+              %label(for="track_filter")=t 'filter'
+              = form.select :filter, [[t('select.none'), nil], *TextFilter.descendants.map { |f| f.filter_name }.sort]
+            %div
+              ~ form.text_area :description, :class => "textarea large", :style => "width: 100%"
 
 %p.buttons
   = save_model_button @track

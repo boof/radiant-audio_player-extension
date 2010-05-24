@@ -1,6 +1,6 @@
 class Admin::PlaylistsController < Admin::ResourceController
 
-  helper 'Admin::Node'
+  helper 'Admin::Audio'
 
   def load_models
     self.models = Playlist.all :include => :tracks, :order => :title

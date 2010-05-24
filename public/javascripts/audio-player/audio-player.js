@@ -1,4 +1,5 @@
 (function($) {
+  $.noConflict()
   $(function() {
     $('td .player').jPlayer({
       swfPath: '/javascripts/audio-player',

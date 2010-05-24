@@ -1,0 +1,24 @@
+- with_options :scope => 'audio-player.playlist.track' do |scope|
+
+  %table.fieldset.track-details(cellspacing="0" border="0" cellpadding="0")
+    %tr
+      %th.artist= "#{ scope.t 'artist' }:"
+      %td.artist&= track_details.artist
+    %tr
+      %th.album= "#{ scope.t 'album' }:"
+      %td.album&= track_details.album
+    %tr
+      %th.length= "#{ scope.t 'length' }:"
+      %td.length= '%i:%02i' % [track_details.length / 1.minute, track_details.length % 1.minute]
+    %tr
+      %th.size= "#{ scope.t 'size' }:"
+      %td.size= number_to_human_size(track_details.size, :locale => 'en')
+    %tr
+      %th.bitrate= "#{ scope.t 'bitrate' }:"
+      %td.bitrate= "#{ track_details.bitrate } kBit/s#{ ' (VBR)' if track_details.vbr? }"
+    %tr
+      %th.samplerate= "#{ scope.t 'samplerate' }:"
+      %td.samplerate= "#{ number_with_precision track_details.samplerate / 1000.0 } kHz"
+    %tr
+      %th.channel_mode= "#{ scope.t 'channels' }:"
+      %td.channel_mode= track_details.channel_mode

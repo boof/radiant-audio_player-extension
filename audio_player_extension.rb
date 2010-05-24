@@ -1,6 +1,5 @@
 module AudioPlayer
   PUBLIC_PATH = '/audio'
-  ADMIN_PATHS = %w[ /admin/playlists /admin/tracks ]
 
   class Extension < Radiant::Extension
 
@@ -17,8 +16,7 @@ module AudioPlayer
       add_paperclip_interpolations
       include_page_tags
 
-      #tab('Content') { add_item 'Audio', /(?:#{ ADMIN_PATHS.map { |p| Regexp.escape p } * '|' })/ }
-      tab('Content') { add_item 'Audio', ADMIN_PATHS.first }
+      tab('Content') { add_item 'Audio', '/admin/audio' }
     end
 
     def add_paperclip_interpolations

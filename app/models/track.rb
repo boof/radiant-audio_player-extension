@@ -15,6 +15,7 @@ class Track < ActiveRecord::Base
 
   belongs_to :playlist, :touch => true
   validates_presence_of :playlist_id
+  validates_numericality_of :position
   validates_uniqueness_of :title, :scope => :playlist_id
 
   def to_param
@@ -38,32 +39,34 @@ class Track < ActiveRecord::Base
 
   def title=(new_title)
     file_was = audio.to_file
-
     write_attribute :title, new_title
-
-    audio.path == file_was.path or
-    audio.queued_for_write[:original] = file_was
-  end
-
-  def title
-    string = read_attribute :title
-
-    if string.blank?
-      if string = read_tag(:title)
-        artist = read_tag :artist
-        string = "#{ artist } - #{ string }" if artist
-      else
-        string = 'Track %i' % position || playlist.tracks.count + 1
-      end
-
-      write_attribute :title, string
-    end
-
-    string
+    audio.path == file_was.path or self.audio = file_was
   end
 
   def read_tag(name)
     mp3info.tag[name.to_s] if audio.file?
+  end
+  delegate :bitrate, :samplerate, :to => :mp3info
+
+  def channel_mode
+    translate "channel_modes.#{ mp3info.channel_mode }"
+  end
+
+  def artist
+    read_tag :artist
+  end
+  def album
+    read_tag :album
+  end
+  def title
+    string = read_attribute :title
+
+    if string.blank?
+      string = read_tag(:title) || generate_title
+      write_attribute :title, string
+    end
+
+    string
   end
 
   def slug
@@ -75,7 +78,39 @@ class Track < ActiveRecord::Base
     slug
   end
 
+  def size
+    audio_file_size
+  end
+  def length
+    mp3info.length.to_i
+  end
+  def vbr?
+    mp3info.vbr
+  end
+
+  def position
+    integer = read_attribute :position
+
+    unless integer
+      if max = Track.maximum(:position, :conditions => "playlist_id = #{ playlist_id }")
+        integer = write_attribute :position, max + 1
+      else
+        integer = write_attribute :position, 0
+      end
+    end
+
+    integer
+  end
+
   protected
+
+    def translate(key, opts = {})
+      I18n.translate "audio-player.playlist.track.#{ key }", opts
+    end
+
+    def generate_title
+      'Track %i' % position || playlist.tracks.count + 1
+    end
 
     def mp3info
       object = audio.dirty?? audio.queued_for_write[:original] : audio

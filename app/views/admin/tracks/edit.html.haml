@@ -1,0 +1,4 @@
+%h1=t 'edit', :title => @track.title, :scope => 'audio-player.playlist.track'
+
+- form_for [:admin, @track], :html => { :multipart => true } do |form|
+  = render :partial => 'form', :object => form

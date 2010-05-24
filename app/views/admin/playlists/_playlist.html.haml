@@ -1,0 +1,16 @@
+%tr.playlist.node.level_0
+
+  %td.title(style="padding-left: #{padding_left(0)}px;")
+    = image 'blank.gif'
+    = link_to h(playlist), edit_admin_playlist_path(playlist)
+
+  %td
+    .player(id="#player-#{ playlist.id }")
+
+  %td.add_child= link_to t('new', :scope => 'audio-player.playlist.track'), new_admin_playlist_track_path(playlist.id)
+  %td.remove= link_to t('remove'), remove_admin_playlist_path(playlist)
+
+= render_tracks playlist.tracks
+- if playlist.tracks.empty?
+  %tr
+    %td.note(colspan="4" style="padding-left: #{padding_left(1)}px;")=t 'no_tracks', :scope => 'audio-player.playlist'

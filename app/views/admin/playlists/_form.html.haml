@@ -1,0 +1,11 @@
+.form-area
+  #audio_form_area
+    %p.title
+      %label(for="playlist_title")=t 'playlist', :count => 1, :scope => 'audio-player'
+      = form.text_field :title, :class => 'textbox', :maxlength => 255
+
+%p.buttons
+  = save_model_button @playlist
+  = save_model_and_continue_editing_button @playlist
+  = t('or')
+  = link_to t('cancel'), admin_playlists_path

@@ -1,0 +1,14 @@
+%h1=t 'remove', :title => @playlist.title, :scope => 'audio-player.playlist'
+%p=t 'warn-remove', :scope => 'audio-player.playlist'
+
+.inset
+  %table.index#audio
+    %tbody
+      = render :partial => 'playlist', :object => @playlist
+
+- form_for [:admin, @playlist], :html => { :method => :delete } do |form|
+
+  %p.buttons
+    %input.button{:type=>"submit", :value => t('remove') }/
+    = t('or')
+    = link_to t('cancel'), admin_playlists_path

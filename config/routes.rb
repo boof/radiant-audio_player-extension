@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
-    admin.resources :audio, :except => :show, :member => { :remove => :get }, :collection => { :list => :get, :sort => :put }
-    admin.audio_home 'audio', :controller => 'audio', :action => 'index'
+    admin.resources :playlists, :member => { :remove => :get } do |playlists|
+      playlists.resources :tracks, :shallow => true, :except => :index, :member => { :remove => :get }
+    end
   end
 
 end

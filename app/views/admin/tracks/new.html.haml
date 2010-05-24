@@ -1,0 +1,4 @@
+%h1= t('new', :scope => 'audio-player.playlist.track')
+
+- form_for [:admin, @track], :url => admin_playlist_tracks_path(params[:playlist_id]), :html => { :multipart => true } do |form|
+  = render :partial => 'form', :object => form

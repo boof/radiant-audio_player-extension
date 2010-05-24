@@ -1,0 +1,23 @@
+.form-area
+  #audio_form_area
+    %p
+      %label(for="track_audio")=t 'audio', :scope => 'audio-player.playlist.track'
+      = form.file_field :audio
+
+    %p.title
+      %label(for="track_title")=t 'track', :count => 1, :scope => 'audio-player.playlist'
+      = form.text_field :title, :class => 'textbox', :maxlength => 255
+
+    %p.description
+      %label(for="track_description")=t 'description', :scope => 'audio-player.playlist.track'
+      = form.text_area :description
+    
+    %p
+      %label(for="track_filter")=t 'filter'
+      = form.select :filter, [[t('select.none'), nil], *TextFilter.descendants.map { |f| f.filter_name }.sort]
+
+%p.buttons
+  = save_model_button @track
+  = save_model_and_continue_editing_button @track
+  = t('or')
+  = link_to t('cancel'), admin_playlists_path

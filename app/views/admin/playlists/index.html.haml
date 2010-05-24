@@ -1,0 +1,15 @@
+- include_jplayer
+
+.outset
+  %table#audio.index(cellspacing="0" border="0" cellpadding="0")
+    %thead
+      %tr
+        %th.title(colspan="2")=t 'title', :scope => 'audio-player'
+        %th.modify(colspan="2")=t 'modify'
+
+    %tbody
+      = render :partial => 'playlist', :collection => @playlists
+
+  #actions
+    %ul
+      %li= link_to "#{ image 'plus' } #{ t 'new', :scope => 'audio-player.playlist' }", new_admin_playlist_path

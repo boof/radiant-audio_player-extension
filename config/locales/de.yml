@@ -5,11 +5,12 @@ de:
       one: Liste
       other: Listen
       new: Liste anlegen
+      edit: '{{title}} bearbeiten'
       no_tracks: Keine Titel vorhanden
       track:
         one: Titel
         other: Titel
-        file: Datei
+        audio: Datei
         description: Beschreibung
         new: Neuer Titel
         edit: '{{title}} bearbeiten'

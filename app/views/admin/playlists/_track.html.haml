@@ -4,13 +4,13 @@
     %a.audio-control(href="#{ track.url }")= image 'blank.gif'
 
     - unless simple
-      = link_to h(track.title), edit_admin_audio_path(:id => track.id)
+      = link_to h(track.title), edit_admin_track_path(track.id)
     - else
       &= track.title
 
   - unless simple
     %td &nbsp
     %td.remove
-      = link_to t('remove'), remove_admin_audio_path(track.id)
+      = link_to t('remove'), remove_admin_track_path(track.id)
   - else
     %td(colspan="2") &nbsp

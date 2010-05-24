@@ -1,11 +1,11 @@
-module Admin::AudioHelper
+module Admin::PlaylistsHelper
 
   def render_tracks(object, locals = nil)
     locals = { :level => 1, :simple => false } unless Hash === locals
 
-    render Array === object ?
-        { :partial => 'track', :collection => object, :locals => locals } :
-        { :partial => 'track', :object => object, :locals => locals }
+    render Track === object ?
+        { :partial => 'track', :object => object, :locals => locals } :
+        { :partial => 'track', :collection => object, :locals => locals }
   end
 
   def include_jplayer

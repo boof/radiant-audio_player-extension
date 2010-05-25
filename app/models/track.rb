@@ -18,10 +18,6 @@ class Track < ActiveRecord::Base
   validates_numericality_of :position
   validates_uniqueness_of :title, :scope => :playlist_id
 
-  def to_param
-    "#{ id }-#{ to_slug }"
-  end
-
   def path
     return if Page.count(:class_name => 'AudioPage') != 1
     "#{ Page.find_by_class_name('AudioPage').first.url }#{ to_param }"
